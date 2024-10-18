@@ -1,11 +1,9 @@
 package tarea5;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -16,22 +14,19 @@ public class AlumnosCompletosMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Alumnos alumno[] = new Alumnos[5];
+		Alumnos alumno[] = new Alumnos[1];
 
 		FileOutputStream ficheroSalida = null;
-		FileInputStream ficheroEntrada = null;
 		ObjectOutputStream dataOb = null;
-		ObjectInputStream dataIs = null;
 		File fichero = null;
 
 		try {
-			fichero = new File("alumnos.dat");
+			System.out.println("Introduzca el nombre de fichero: ");
+			String nombreFichero = sc.nextLine();
+			fichero = new File(nombreFichero);
 
 			ficheroSalida = new FileOutputStream(fichero);
 			dataOb = new ObjectOutputStream(ficheroSalida);
-
-			ficheroEntrada = new FileInputStream(fichero);
-			dataIs = new ObjectInputStream(ficheroEntrada);
 
 			for (int i = 0; i < alumno.length; i++) {
 				System.out.println("Introduzca la Nia del alumno: ");
@@ -65,11 +60,6 @@ public class AlumnosCompletosMain {
 				dataOb.writeObject(alumno[i]);
 			}
 
-			while (ficheroEntrada.available() > 0) {
-				Alumnos alumnoLeido = (Alumnos) dataIs.readObject();
-				System.out.println(alumnoLeido);
-			}
-
 		} catch (DateTimeParseException e) {
 			System.out.println("Formato de fecha incorrecto. Inténtalo de nuevo.");
 		} catch (InputMismatchException e) {
@@ -78,12 +68,8 @@ public class AlumnosCompletosMain {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} finally {
 			try {
-				ficheroEntrada.close();
-				dataIs.close();
 				dataOb.close();
 				ficheroSalida.close();
 				sc.close();

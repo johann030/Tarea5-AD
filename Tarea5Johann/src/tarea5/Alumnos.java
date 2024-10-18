@@ -3,11 +3,10 @@ package tarea5;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Alumnos implements Serializable{
+public class Alumnos implements Serializable {
 
 	private static final long serialVersionUID = 3096944947549871085L;
-	
-	
+
 	private int nia;
 	private String nombre, apellidos, ciclo, curso, grupo;
 	private LocalDate nacimiento;
