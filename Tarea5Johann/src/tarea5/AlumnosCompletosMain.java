@@ -14,7 +14,7 @@ public class AlumnosCompletosMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Alumnos alumno[] = new Alumnos[1];
+		Alumnos alumno[] = new Alumnos[5];
 
 		FileOutputStream ficheroSalida = null;
 		ObjectOutputStream dataOb = null;
